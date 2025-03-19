@@ -1,11 +1,55 @@
-﻿@{
+﻿@using WebApp.Models
+@model RegisterViewModel
+@{
 	Layout = "_CleanLayout";
 	ViewData["Title"] = "Register";
 }
 
 <div class="center-screen">
 	<div class="surface">
-		Form to register
+		<form method="post" novalidate>
+			<div class="mb-3 form-group">
+				<label asp-for="FormData.FirstName" class="form-label"></label>
+				<div class=" form-group">
+					<input asp-for="FormData.FirstName" class="form-control">
+					<span asp-validation-for="FormData.FirstName" class="field-validation-error"></span>
+				</div>
+			</div>
+			<div class="mb-3">
+				<label asp-for="FormData.LastName" class="form-label"></label>
+				<div class=" form-group">
+					<input asp-for="FormData.LastName" class="form-control">
+					<span asp-validation-for="FormData.LastName" class="field-validation-error"></span>
+				</div>
+			</div>
+			<div class="mb-3 form-group">
+				<label asp-for="FormData.Email" class="form-label"></label>
+				<div class=" form-group">
+					<input asp-for="FormData.Email" class="form-control">
+					<span asp-validation-for="FormData.Email" class="field-validation-error"></span>
+				</div>
+			</div>
+			<div class="mb-3 form-group">
+				<label asp-for="FormData.Password" class="form-label"></label>
+				<div class=" form-group">
+					<input asp-for="FormData.Password" class="form-control" value="@Model?.FormData.Password">
+					<span asp-validation-for="FormData.Password" class="field-validation-error"></span>
+				</div>
+			</div>
+			<div class="mb-3 form-group">
+				<label asp-for="FormData.ConfirmPassword" class="form-label"></label>
+				<div class=" form-group">
+					<input asp-for="FormData.ConfirmPassword" class="form-control" value="@Model?.FormData.ConfirmPassword">
+					<span asp-validation-for="FormData.ConfirmPassword" class="field-validation-error"></span>
+				</div>
+			</div>
+			<div class="mb-3 form-group">
+				<select asp-for="FormData.ClientId" class="form-control">
+					<option value="0" selected disabled>--Select a client--</option>
+				</select>
+				<span asp-validation-for="FormData.ClientId" class="field-validation-error"></span>
+			</div>
 		<button class="btn btn-blue">@ViewData["Title"]</button>
+		</form>
 	</div>
 </div>

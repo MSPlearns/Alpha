@@ -1,0 +1,35 @@
+﻿<div class="client-list surface">
+	<table>
+		<thead>
+			<tr>
+				<th class="client-check"><input type="checkbox" /></th>
+				<th class="client-info">Client Name</th>
+				<th class="client-location">Location</th>
+				<th class="client-phone">Phone</th>
+				<th class="client-status">Status</th>
+				<th class="client-actions"></th>
+			</tr>
+		</thead>
+		<tbody>
+			@* each row will get looped*@
+			<tr>
+				<td class="client-check"><input type="checkbox" /></td>
+				<td class="client-info">
+					<img class="client-image" src="~/images/DefaultAvatar.svg" alt="" />
+					<div class="client-name">SofiaBarrado Sa</div>
+					<div class="client-email">sbarradoabogados@gggg.cm</div>
+				</td>
+				<td class="client-location">Location</td>
+				<td class="client-phone">+46 0685743322</td>
+				<td class="client-status">
+					<div class="badge success">
+						active
+					</div>
+				</td>
+				<td class="client-actions">
+					<i class="fa-regular fa-ellipsis"></i>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
