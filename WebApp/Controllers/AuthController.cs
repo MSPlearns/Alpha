@@ -12,7 +12,7 @@ namespace WebApp.Controllers
             return View(viewModel);
         }
         [HttpPost]
-        public IActionResult Register(RegisterFormModel formData)
+        public IActionResult Register(UserRegisterForm formData)
         {
             if (!ModelState.IsValid)
             {

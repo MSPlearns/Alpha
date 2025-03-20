@@ -2,7 +2,7 @@
 using System.Transactions;
 
 namespace WebApp.Models;
-public class RegisterFormModel
+public class UserRegisterForm
 {
     [Display(Name = "First Name", Prompt = "Enter your first name")]
     [Required(ErrorMessage ="You must enter your first name")]
