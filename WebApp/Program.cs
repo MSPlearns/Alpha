@@ -1,5 +1,9 @@
+using Business.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
+
+//builder.Services.AddScoped<IClientService, ClientService>();
 
 var app = builder.Build();
 

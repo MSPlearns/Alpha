@@ -16,36 +16,7 @@ public class AdminController : Controller
     [Route("clients")]
     public IActionResult Clients()
     {
-        var viewModel = new AddClientViewModel();
-        return View(viewModel);
-    }
-
-    [HttpPost]
-    public IActionResult AddClient(AddClientForm formData)
-    {
-        if (!ModelState.IsValid)
-        {
-            AddClientViewModel viewModel = new()
-            {
-                FormData = formData
-            };
-            return RedirectToAction("Clients");
-        }
-
-        return View();
-    }
-    [HttpPost]
-    public IActionResult EditClient(AddClientForm formData)
-    {
-        if (!ModelState.IsValid)
-        {
-            AddClientViewModel viewModel = new()
-            {
-                FormData = formData
-            };
-            return RedirectToAction("Clients");
-        }
-
         return View();
     }
 }
+
