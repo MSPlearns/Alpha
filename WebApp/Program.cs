@@ -1,7 +1,31 @@
 using Business.Services;
+using Data.Context;
+using Data.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection")));
+builder.Services
+    .AddIdentity<AppUserEntity, IdentityRole>(x => 
+    {
+        x.User.RequireUniqueEmail = true;
+        x.Password.RequiredLength = 8;
+    })
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddDefaultTokenProviders();
+builder.Services.ConfigureApplicationCookie(x=>
+{
+    x.LoginPath = "/Auth/singin";
+    x.LogoutPath = "/Auth/singout";
+    x.AccessDeniedPath = "/Auth/denied";
+    x.Cookie.HttpOnly = true;
+    x.Cookie.IsEssential = true;
+    x.Cookie.Expiration = TimeSpan.FromHours(1);
+    x.SlidingExpiration = true;
+});
+
 
 //builder.Services.AddScoped<IClientService, ClientService>();
 
