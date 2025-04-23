@@ -7,7 +7,7 @@ using Shared.Results;
 
 namespace Data.Repositories;
 
-public interface IBaseRepository<TEntity> where TEntity : class
+public interface IBaseRepository<TEntity, TModel> where TEntity : class where TModel : class
 {
     Task AddAsync(TEntity entity);
     Task BeginTransactionAsync();
@@ -23,7 +23,7 @@ public interface IBaseRepository<TEntity> where TEntity : class
 }
 
 // The methods are virtual so that i can implement eager loading
-public class BaseRepository<TEntity, TModel>(AppDbContext context) : IBaseRepository<TEntity> where TEntity : class where TModel : class
+public class BaseRepository<TEntity, TModel>(AppDbContext context) : IBaseRepository<TEntity, TModel> where TEntity : class where TModel : class
 {
     protected readonly AppDbContext _context = context;
 
