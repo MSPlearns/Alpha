@@ -1,6 +1,6 @@
-﻿namespace Data.Models;
+﻿namespace Shared.Results;
 
-public class SucessResult : RepositoryResult
+public class SucessResult : Result
 {
     public SucessResult( int statusCode)
     {
@@ -8,7 +8,3 @@ public class SucessResult : RepositoryResult
         StatusCode = statusCode;
     }
 }
-
-
-
-

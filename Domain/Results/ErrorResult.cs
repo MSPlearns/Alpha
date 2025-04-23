@@ -1,6 +1,6 @@
-﻿namespace Data.Models;
+﻿namespace Shared.Results;
 
-public class ErrorResult : RepositoryResult
+public class ErrorResult : Result
 {
     public ErrorResult( int statusCode, string? errorMessage)
     {
@@ -9,7 +9,3 @@ public class ErrorResult : RepositoryResult
         ErrorMessage = errorMessage;
     }
 }
-
-
-
-
