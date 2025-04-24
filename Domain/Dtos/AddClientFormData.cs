@@ -1,17 +1,17 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
-namespace Business.Models.Dtos;
+namespace Domain.Dtos;
 
-public class AddClientForm
+public class AddClientFormData
 {
-    [Display(Name = "Client Image", Prompt ="Select an image")]
+    [Display(Name = "Client Image", Prompt = "Select an image")]
     [DataType(DataType.Upload)]
     public IFormFile? ClientImage { get; set; }
 
     [DataType(DataType.Text)]
     [Required(ErrorMessage = "Required")]
-    [Display(Name = "Client Name", Prompt ="Enter client's name")]
+    [Display(Name = "Client Name", Prompt = "Enter client's name")]
     public string ClientName { get; set; } = null!;
 
     [DataType(DataType.EmailAddress)]
@@ -30,5 +30,5 @@ public class AddClientForm
 
     [Required(ErrorMessage = "Required")]
     [Display(Name = "Status")]
-    public string ClientStatus { get; set; } = null!;
+    public string ClientStatus { get; set; } = null!; // TODO: remove this or add a ClientStatus enitity, model etc
 }

@@ -1,12 +1,15 @@
-﻿using Business.Models.Dtos;
+﻿using Domain.Dtos;
+using Domain.Models;
+using Shared.Results;
 
-namespace Business.Services;
-
-public interface IClientService
+namespace Business.Services
 {
-    Task<bool> CreateClientAsync(AddClientForm form);
-    Task<bool> UpdateClientAsync(EditClientForm form);
-    bool DeleteClient(int clientId);
-    //Task<List<Client>> GetClients();
-    //Task<Client> GetClient(int clientId);
+    public interface IClientService
+    {
+        Task<Result<Client>> AddAsync(AddClientFormData formData);
+        Task<Result<Client>> DeleteAsync(Client client);
+        Task<Result<IEnumerable<Client>>> GetAllAsync();
+        Task<Result<Client>> GetByIdAsync(string clientId);
+        Task<Result<Client>> UpdateAsync(EditClientFormData form, Client existingClient);
+    }
 }

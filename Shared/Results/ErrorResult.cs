@@ -1,6 +1,6 @@
 ﻿namespace Shared.Results;
 
-public class ErrorResult : Result
+public class ErrorResult<T> : Result<T> where T : class
 {
     public ErrorResult( int statusCode, string? errorMessage)
     {

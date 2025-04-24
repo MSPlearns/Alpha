@@ -5,10 +5,10 @@ public class Project
 {
 
     public string Id { get; set; } = null!;
-    public string ProjectName { get; set; } = null!;
-    public string? ProjectImage { get; set; }
+    public string Title { get; set; } = null!;
+    public string? ImageUrl { get; set; }
     public string? Description { get; set; }
-    public decimal? ProjectBudget { get; set; }
+    public decimal? Budget { get; set; }
 
     public DateTime StartDate { get; set; }
 
@@ -18,10 +18,10 @@ public class Project
 
     //Foreign keys 
 
-    public Status Status { get; set; } = null!;
+    public Status ProjectStatus { get; set; } = null!;
 
-    public AppUser ProjectManagerId { get; set; } = null!;
+    public AppUser ProjectManager { get; set; } = null!;
 
-    public Client Client { get; set; } = null!;
+    public Client ProjectClient { get; set; } = null!;
 
 }

@@ -6,10 +6,10 @@ public class ProjectEntity
 {
     [Key]
     public string Id { get; set; } = Guid.NewGuid().ToString();
-    public string ProjectName { get; set; } = null!;
-    public string? ProjectImage { get; set; }
+    public string Title { get; set; } = null!;
+    public string? ImageUrl { get; set; }
     public string? Description { get; set; }
-    public decimal? ProjectBudget { get; set; }
+    public decimal? Budget { get; set; }
     
     [Column(TypeName = "date")]
     public DateTime StartDate { get; set; }
@@ -21,15 +21,15 @@ public class ProjectEntity
     public DateTime? EndDate { get; set; }
 
     //Foreign keys 
-    [ForeignKey(nameof(Status))]
+    [ForeignKey(nameof(ProjectStatus))]
     public int StatusId { get; set; }
-    public StatusEntity Status { get; set; } = null!;
+    public StatusEntity ProjectStatus { get; set; } = null!;
 
     [ForeignKey(nameof(ProjectManager))]
     public string ProjectManagerId { get; set; } = null!;
     public AppUserEntity ProjectManager { get; set; } = null!;
 
-    [ForeignKey(nameof(Client))]
+    [ForeignKey(nameof(ProjectClient))]
     public string ClientId { get; set; } = null!;
-    public ClientEntity Client { get; set; } = null!;
+    public ClientEntity ProjectClient { get; set; } = null!;
 }

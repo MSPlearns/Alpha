@@ -1,19 +1,18 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
-namespace Business.Models.Dtos;
-
-public class EditClientForm
+namespace Domain.Dtos;
+public class EditClientFormData
 {
-    public int ClientId { get; set; }
+    public int Id { get; set; }
 
-    [Display(Name = "Client Image", Prompt ="Select an image")]
+    [Display(Name = "Client Image", Prompt = "Select an image")]
     [DataType(DataType.Upload)]
     public IFormFile? ClientImage { get; set; }
 
     [DataType(DataType.Text)]
     [Required(ErrorMessage = "Required")]
-    [Display(Name = "Client Name", Prompt ="Enter client's name")]
+    [Display(Name = "Client Name", Prompt = "Enter client's name")]
     public string ClientName { get; set; } = null!;
 
     [DataType(DataType.EmailAddress)]
