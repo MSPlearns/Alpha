@@ -19,7 +19,7 @@ public interface IBaseRepository<TEntity, TModel> where TEntity : class where TM
     Task<Result<TModel>> UpdateAsync(Expression<Func<TEntity, bool>> expression, TEntity updatedEntity);
     Result<TModel> Delete(TModel model);
     Task<int> SaveAsync();
-    Task<bool> EntityExistsAsync(Expression<Func<TEntity, bool>> expression);
+    Task<Result<TModel>> EntityExistsAsync(Expression<Func<TEntity, bool>> expression);
 }
 
 // The methods are virtual so that i can implement eager loading
@@ -205,8 +205,13 @@ public class BaseRepository<TEntity, TModel>(AppDbContext context) : IBaseReposi
     }
     #endregion CRUD Operations
 
-    public virtual async Task<bool> EntityExistsAsync(Expression<Func<TEntity, bool>> expression)
+    public virtual async Task<Result<TModel>> EntityExistsAsync(Expression<Func<TEntity, bool>> expression)
     {
-        return await _dbSet.AnyAsync(expression);
+        var result = await _dbSet.AnyAsync(expression);
+        if (result)
+        {
+            return Result<TModel>.Ok();
+        }
+        return Result<TModel>.NotFound("Entity not found.");
     }
 }

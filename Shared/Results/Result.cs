@@ -4,7 +4,7 @@ public abstract class Result<T> where T : class
 
     //Note: There is better ways to implement this, i.e. using a Unit class for void results, but this is good enough for now
 {
-    public bool Suceeded { get; protected set; }
+    public bool Succeeded { get; protected set; }
     public int StatusCode { get; protected set; }
     public string? ErrorMessage { get; protected set; }
     public T? Data { get; protected set; }
@@ -17,6 +17,11 @@ public abstract class Result<T> where T : class
     public static Result<T> Ok()
     {
         return new SucessResult<T>(200);
+    }
+
+    public static Result<T> PartialSuccess(string message)
+    {
+        return new ErrorResult<T>(204, message);
     }
 
     public static Result<T> Created()

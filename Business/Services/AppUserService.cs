@@ -1,8 +1,11 @@
 ﻿using Data.Entities;
 using Data.Repositories;
+using Domain.Dtos;
 using Domain.Models;
 using Microsoft.AspNetCore.Identity;
+using Shared.Extensions;
 using Shared.Results;
+using System.Diagnostics;
 
 namespace Business.Services;
 
@@ -11,6 +14,7 @@ public interface IAppUserService
     Task<Result<AppUser>> AddUserToRoleAsync(string userId, string roleName);
     Task<Result<IEnumerable<AppUser>>> GetAllAsync();
     Task<Result<AppUser>> GetByIdAsync(string appUserId);
+    Task<Result<AppUser>> AddAppUserUserAsync(SignUpFormData formData, string roleName = "User");
 }
 
 public class AppUserService(IAppUserRepository appUserRepository, UserManager<AppUserEntity> userManager, RoleManager<IdentityRole> roleManager) : IAppUserService
@@ -19,6 +23,44 @@ public class AppUserService(IAppUserRepository appUserRepository, UserManager<Ap
     private readonly IAppUserRepository _appUserRepository = appUserRepository;
     private readonly UserManager<AppUserEntity> _userManager = userManager;
     private readonly RoleManager<IdentityRole> _roleManager = roleManager;
+
+    public async Task<Result<AppUser>> AddAppUserUserAsync(SignUpFormData formData, string roleName = "User")
+    {
+        if (formData == null)
+        {
+            return Result<AppUser>.BadRequest("Form data can't null.");
+        }
+
+        var existsResult = await _appUserRepository.EntityExistsAsync(x => x.Email == formData.Email);
+        if (existsResult.Succeeded == true )
+        {
+            return Result<AppUser>.AlreadyExists("User with this email already exists");
+        }
+
+        try
+        {
+            var appUserEntity = formData.MapTo<AppUserEntity>();
+            var result = _userManager.CreateAsync(appUserEntity, formData.Password);
+
+            if (result.Result.Succeeded)
+            {
+                var addToRoleResult = await AddUserToRoleAsync(appUserEntity.Id, roleName); 
+                return addToRoleResult.Succeeded
+                    ? Result<AppUser>.Ok()
+                    : Result<AppUser>.PartialSuccess($"User created but not added to default role due to error:{addToRoleResult.ErrorMessage}");
+            }
+            
+            return Result<AppUser>.BadRequest($"Unable to create user due to error: {result.Result.Errors.FirstOrDefault()?.Description}");
+
+        }
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+            return Result<AppUser>.BadRequest(ex.Message);
+        }
+    }
+
+
 
     public async Task<Result<AppUser>> AddUserToRoleAsync(string userId, string roleName)
     {
@@ -40,6 +82,7 @@ public class AppUserService(IAppUserRepository appUserRepository, UserManager<Ap
         }
         catch (Exception ex)
         {
+            Debug.WriteLine(ex.Message);
             return Result<AppUser>.BadRequest(ex.Message);
         }
     }
@@ -52,6 +95,7 @@ public class AppUserService(IAppUserRepository appUserRepository, UserManager<Ap
         }
         catch (Exception ex)
         {
+            Debug.WriteLine(ex.Message);
             return Result<IEnumerable<AppUser>>.BadRequest(ex.Message);
         }
     }
@@ -65,6 +109,7 @@ public class AppUserService(IAppUserRepository appUserRepository, UserManager<Ap
         }
         catch (Exception ex)
         {
+            Debug.WriteLine(ex.Message);
             return Result<AppUser>.BadRequest(ex.Message);
         }
     }

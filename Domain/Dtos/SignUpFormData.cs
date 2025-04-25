@@ -2,7 +2,7 @@
 using System.Transactions;
 
 namespace Domain.Dtos;
-public class UserRegistrationFormData
+public class SignUpFormData
 {
     [Display(Name = "First Name", Prompt = "Enter your first name")]
     [Required(ErrorMessage = "You must enter your first name")]
