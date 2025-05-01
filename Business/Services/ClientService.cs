@@ -90,10 +90,16 @@ public class ClientService(IClientRepository clientRepository) : IClientService
         await _clientRepository.BeginTransactionAsync();
         try
         {
-            if (client == null || !(await _clientRepository.EntityExistsAsync(x => x.Id == client.Id)))
+            if (client == null)
             {
                 await _clientRepository.RollbackTransactionAsync();
                 return Result<Client>.BadRequest("Client is null");
+            }
+            var exists = await _clientRepository.EntityExistsAsync(x => x.Id == client.Id);
+            if (!exists.Succeeded)
+            {
+                await _clientRepository.RollbackTransactionAsync();
+                return Result<Client>.NotFound("Client not found");
             }
 
             var result = _clientRepository.Delete(client);

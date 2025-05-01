@@ -1,8 +1,9 @@
-﻿using System.Reflection;
+﻿using Domain.Models;
+using System.Reflection;
 
 namespace Shared.Extensions;
 
-public static class MappExtensions
+public static class MapExtensions
 {
     // This code is an object-to-object mapper. It copies matching properties from one object to a new object of another type, as long as they have the same property names and types.
 

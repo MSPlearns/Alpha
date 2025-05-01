@@ -1,4 +1,5 @@
-﻿using Business.Models.Dtos;
+﻿using Domain.Dtos;
+
 //using Business.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,7 +14,7 @@ namespace WebApp.Controllers
         //}
 
         [HttpPost]
-        public IActionResult Add(AddClientForm form)//TODO: change to async when the services are implemented
+        public IActionResult Add(AddClientFormData form)//TODO: change to async when the services are implemented
         {
             Console.WriteLine("AddAsync method called");
             if (!ModelState.IsValid)
@@ -43,7 +44,7 @@ namespace WebApp.Controllers
 
 
         [HttpPost]
-        public IActionResult Edit(EditClientForm form) //TODO: change to async when the services are implemented
+        public IActionResult Edit(EditClientFormData form) //TODO: change to async when the services are implemented
         {
             if (!ModelState.IsValid)
             {

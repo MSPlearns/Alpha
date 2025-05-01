@@ -1,0 +1,31 @@
+﻿@using WebApp.Models
+@using Domain.Dtos
+@model SignInViewModel
+@{
+	Layout = "_CleanLayout";
+	ViewData["Title"] = "SignIn";
+}
+
+<div class="center-screen">
+	<div class="surface">
+		<form method="post" novalidate>
+
+			<div class="mb-3 form-group">
+				<label asp-for="Email" class="form-label"></label>
+				<div class=" field-group">
+					<input asp-for="Email" class="form-control">
+					<span asp-validation-for="Email" class="field-validation-error"></span>
+				</div>
+			</div>
+			<div class="mb-3 form-group">
+				<label asp-for="Password" class="form-label"></label>
+				<div class=" field-group">
+					<input asp-for="Password" class="form-control" value="@Model?.Password">
+					<span asp-validation-for="Password" class="field-validation-error"></span>
+				</div>
+			</div>
+
+		<button class="btn btn-blue">@ViewData["Title"]</button>
+		</form>
+	</div>
+</div>

@@ -1,6 +1,6 @@
-﻿@using Business.Models.Dtos
+﻿@using Domain.Dtos
 @using WebApp.Models
-@model EditClientForm 
+@model EditClientFormData
 
 <div id="editClientModal" class="modal">
 	<div class="modal-content">
@@ -12,53 +12,37 @@
 
 		<form novalidate method="post" asp-action="Edit" asp-controller="Client">
 
-			<input asp-for="ClientId" readonly type="hidden" />
-
-			<div class="image-previewer circle">
-				<img src="" class="image-preview" />
-				<input asp-for="ClientImage" accept="image/*" class="hide" />
-			</div>
+			<input asp-for="Id" readonly type="hidden" />
 
 			<div class="form-group">
-				<label asp-for="ClientName"></label>
+				<label asp-for="Name"></label>
 				<div class="field-group">
-					<input asp-for="ClientName" type="text" />
-					<span asp-validation-for="ClientName" class="field-validation-error"></span>
+					<input asp-for="Name" type="text" />
+					<span asp-validation-for="Name" class="field-validation-error"></span>
 				</div>
 			</div>
 			<div class="form-group">
-				<label asp-for="ClientEmail"></label>
+				<label asp-for="Email"></label>
 				<div class="field-group">
-					<input asp-for="ClientEmail" type="email" />
-					<span asp-validation-for="ClientEmail" class="field-validation-error"></span>
+					<input asp-for="Email" type="email" />
+					<span asp-validation-for="Email" class="field-validation-error"></span>
 				</div>
 			</div>
 			<div class="form-group">
-				<label asp-for="ClientPhone"></label>
+				<label asp-for="PhoneNumber"></label>
 				<div class="field-group">
-					<input asp-for="ClientPhone" type="tel" />
-					<span asp-validation-for="ClientPhone" class="field-validation-error"></span>
+					<input asp-for="PhoneNumber" type="tel" />
+					<span asp-validation-for="PhoneNumber" class="field-validation-error"></span>
 				</div>
 			</div>
 			<div class="form-group">
-				<label asp-for="ClientLocation"></label>
+				<label asp-for="Location"></label>
 				<div class="field-group">
-					<input asp-for="ClientLocation" type="text" />
-					<span asp-validation-for="ClientLocation" class="field-validation-error"></span>
+					<input asp-for="Location" type="text" />
+					<span asp-validation-for="Location" class="field-validation-error"></span>
 				</div>
 			</div>
-			<div class="form-group">
-				<label asp-for="ClientStatus">Status</label>
-				<div class="field-group">
-					<select asp-for="ClientStatus" class="form-control">
-						<option value="0" selected disabled>--Select a status--</option>
-						<option value="Active">Active</option>
-						<option value="Inactive">Inactive</option>
-						<option value="Blacklisted">Blacklisted</option>
-					</select>
-					<span asp-validation-for="ClientStatus" class="field-validation-error"></span>
-				</div>
-			</div>
+			
 			<button type="submit" class="btn btn-blue">Save</button>
 		</form>
 	</div>

@@ -8,7 +8,10 @@
 
 	<ItemGroup>
 		<Folder Include="Results\" />
-		<Folder Include="Extensions\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Domain\Domain.csproj" />
 	</ItemGroup>
 
 </Project>

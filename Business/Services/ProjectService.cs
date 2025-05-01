@@ -13,7 +13,7 @@ public interface IProjectService
     Task<Result<Project>> DeleteAsync(Project project);
     Task<Result<IEnumerable<Project>>> GetAllAsync();
     Task<Result<Project>> GetById(int projectId);
-    Task<Result<Project>> UpdateAsync(Project existingProject);
+    Task<Result<Project>> UpdateAsync(EditProjectFormData formData, string existingProjectId);
 }
 
 public class ProjectService(IProjectRepository projectRepository, IStatusService statusService, IClientService clientService, IAppUserService appUserService) : IProjectService
@@ -112,7 +112,7 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
         }
     }
 
-    public async Task<Result<Project>> UpdateAsync(EditProjectFormData formData, Project existingProject)
+    public async Task<Result<Project>> UpdateAsync(EditProjectFormData formData, string existingProjectId)
     {
         if (formData == null)
         {
@@ -148,7 +148,7 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
             updatedProject.ProjectClient = client.Data!.MapTo<ClientEntity>();
             updatedProject.ProjectManager = projectManager.Data!.MapTo<AppUserEntity>();
 
-            var result = await _projectRepository.UpdateAsync(x => x.Id == existingProject.Id, updatedProject);
+            var result = await _projectRepository.UpdateAsync(x => x.Id == existingProjectId, updatedProject);
             await _projectRepository.SaveAsync();
 
             await _projectRepository.CommitTransactionAsync();
@@ -166,13 +166,14 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
         await _projectRepository.BeginTransactionAsync();
         try
         {
-            if (project == null || !(await _projectRepository.EntityExistsAsync(x => x.Id == project.Id)))
+            var projectExists = await _projectRepository.EntityExistsAsync(x => x.Id == project.Id);
+            if (project == null || !projectExists.Succeeded)
             {
                 await _projectRepository.RollbackTransactionAsync();
                 return Result<Project>.BadRequest("Project is null");
             }
 
-            var result = _projectRepository.Delete(project);
+            var result = _projectRepository.Delete(project!);
             await _projectRepository.SaveAsync();
             await _projectRepository.CommitTransactionAsync();
             return result;

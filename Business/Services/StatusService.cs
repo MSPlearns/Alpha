@@ -112,10 +112,16 @@ public class StatusService(IStatusRepository statusRepository) : IStatusService
         await _statusRepository.BeginTransactionAsync();
         try
         {
-            if (status == null || !(await _statusRepository.EntityExistsAsync(x => x.Id == status.Id)))
+            if (status == null)
             {
                 await _statusRepository.RollbackTransactionAsync();
                 return Result<Status>.BadRequest("Status is null");
+            }
+            var exists = await _statusRepository.GetAsync(x => x.Id == status.Id);
+            if (!exists.Succeeded)
+            {
+                await _statusRepository.RollbackTransactionAsync();
+                return Result<Status>.NotFound("Status does not exist");
             }
 
             _statusRepository.Delete(status);

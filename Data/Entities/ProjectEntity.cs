@@ -9,6 +9,8 @@ public class ProjectEntity
     public string Title { get; set; } = null!;
     public string? ImageUrl { get; set; }
     public string? Description { get; set; }
+
+    [Column(TypeName = "decimal(18, 2)")]
     public decimal? Budget { get; set; }
     
     [Column(TypeName = "date")]

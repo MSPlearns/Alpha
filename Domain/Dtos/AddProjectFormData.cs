@@ -40,7 +40,3 @@ public class EditProjectFormData
 
     public string ClientId { get; set; } = null!;
 }
-
-
-
-

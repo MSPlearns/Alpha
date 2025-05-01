@@ -1,0 +1,57 @@
+﻿@using WebApp.Models 
+@using Domain.Dtos 
+@model SignUpViewModel
+@{
+	Layout = "_CleanLayout";
+	ViewData["Title"] = "SignUp";
+}
+
+<div class="center-screen">
+	<div class="surface">
+		<form method="post" novalidate>
+			<div class="mb-3 form-group">
+				<label asp-for="FirstName" class="form-label"></label>
+				<div class=" field-group">
+					<input asp-for="FirstName" class="form-control">
+					<span asp-validation-for="FirstName" class="field-validation-error"></span>
+				</div>
+			</div>
+			<div class="mb-3">
+				<label asp-for="LastName" class="form-label"></label>
+				<div class=" field-group">
+					<input asp-for="LastName" class="form-control">
+					<span asp-validation-for="LastName" class="field-validation-error"></span>
+				</div>
+			</div>
+			<div class="mb-3 form-group">
+				<label asp-for="Email" class="form-label"></label>
+				<div class=" field-group">
+					<input asp-for="Email" class="form-control">
+					<span asp-validation-for="Email" class="field-validation-error"></span>
+				</div>
+			</div>
+			<div class="mb-3 form-group">
+				<label asp-for="Password" class="form-label"></label>
+				<div class=" field-group">
+					<input asp-for="Password" class="form-control" value="@Model?.Password">
+					<span asp-validation-for="Password" class="field-validation-error"></span>
+				</div>
+			</div>
+			<div class="mb-3 form-group">
+				<label asp-for="ConfirmPassword" class="form-label"></label>
+				<div class=" field-group">
+					<input asp-for="ConfirmPassword" class="form-control" value="@Model?.ConfirmPassword">
+					<span asp-validation-for="ConfirmPassword" class="field-validation-error"></span>
+				</div>
+			</div>
+			@* TODO: Use this for the select list from Projects*@
+			@* <div class="mb-3 form-group"> *@
+			@* 	<select asp-for="ClientId" class="form-control"> *@
+			@* 		<option value="0" selected disabled>--Select a client--</option> *@
+			@* 	</select> *@
+			@* 	<span asp-validation-for="ClientId" class="field-validation-error"></span> *@
+			@* </div> *@
+		<button class="btn btn-blue">@ViewData["Title"]</button>
+		</form>
+	</div>
+</div>

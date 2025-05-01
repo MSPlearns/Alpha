@@ -40,9 +40,9 @@ public class AppUserService(IAppUserRepository appUserRepository, UserManager<Ap
         try
         {
             var appUserEntity = formData.MapTo<AppUserEntity>();
-            var result = _userManager.CreateAsync(appUserEntity, formData.Password);
+            var result = await _userManager.CreateAsync(appUserEntity, formData.Password);
 
-            if (result.Result.Succeeded)
+            if (result.Succeeded)
             {
                 var addToRoleResult = await AddUserToRoleAsync(appUserEntity.Id, roleName); 
                 return addToRoleResult.Succeeded
@@ -50,7 +50,7 @@ public class AppUserService(IAppUserRepository appUserRepository, UserManager<Ap
                     : Result<AppUser>.PartialSuccess($"User created but not added to default role due to error:{addToRoleResult.ErrorMessage}");
             }
             
-            return Result<AppUser>.BadRequest($"Unable to create user due to error: {result.Result.Errors.FirstOrDefault()?.Description}");
+            return Result<AppUser>.BadRequest($"Unable to create user due to error: {result.Errors.FirstOrDefault()?.Description}");
 
         }
         catch (Exception ex)

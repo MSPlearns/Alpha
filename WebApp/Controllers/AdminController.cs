@@ -1,5 +1,4 @@
-﻿using Business.Models.Dtos;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using WebApp.Models;
 
 namespace WebApp.Controllers;
@@ -18,5 +17,12 @@ public class AdminController : Controller
     {
         return View();
     }
+
+    [Route("statuses")]
+    public IActionResult Statuses()
+    {
+        return View();
+    }
+
 }
 
