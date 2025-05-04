@@ -23,7 +23,7 @@ builder.Services.ConfigureApplicationCookie(x=>
     x.AccessDeniedPath = "/Auth/denied";
     x.Cookie.HttpOnly = true;
     x.Cookie.IsEssential = true;
-    x.Cookie.Expiration = TimeSpan.FromHours(1);
+    x.ExpireTimeSpan = TimeSpan.FromHours(1);
     x.SlidingExpiration = true;
 });
 

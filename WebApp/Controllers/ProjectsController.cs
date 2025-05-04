@@ -12,6 +12,8 @@ namespace WebApp.Controllers
     public class ProjectsController(IProjectService projectService) : Controller
     {
         private readonly IProjectService _projectService = projectService;
+
+        [HttpGet("")]
         public async Task<IActionResult> Projects()
         {
             var viewModel = new ProjectsViewModel
@@ -27,6 +29,12 @@ namespace WebApp.Controllers
             var result = await _projectService.GetAllAsync();
             var projects = result.Data;
             var projectViewModels = new List<ProjectViewModel>();
+
+            if (projects == null)
+            {
+                return projectViewModels;
+            }
+
             foreach (var project in projects) // TODO: maybe a null check here?
             {
                 var viewModel = project.ToViewModel();
@@ -58,6 +66,7 @@ namespace WebApp.Controllers
             }
             ViewBag.ErrorMessage = result.ErrorMessage;
             return View(viewModel);
+
         }
 
         public IActionResult Update()
