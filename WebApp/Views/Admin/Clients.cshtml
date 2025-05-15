@@ -1,0 +1,57 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div id="team" class="page">
+    <div class="page-header">
+        <h1>Clients</h1>
+        <button class="btn btn-add" id="add-client-button" type="button" data-type="modal"
+                data-target="#add-client-modal">
+            <i class="fa-duotone fa-solid fa-plus"></i>
+            <span>Add Client</span>
+        </button>
+    </div>
+    <div class="divider"></div>
+    <section id="clients" class="clients-list">
+        <div class="card">
+            <div class="card-header">
+                <button class="btn-more" type="button" data-type="dropdown" data-target="#client-dropdown">
+                </button>
+                <div id="client-dropdown" class="dropdown">
+                    <div class="dropdown-body">
+                        <a class="dropdown-item" href="#" type="button" data-type="modal"
+                           data-target="#edit-client-modal">
+                            <i class="fa-duotone fa-solid fa-pencil"></i>
+                            <span>Edit</span>
+                        </a>
+                        <div class="divider"></div>
+                        <a class="dropdown-item" href="#">
+                            <i class="fa-duotone fa-solid fa-trash-can-xmark"></i>
+                            <span>Delete</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <img class="round-image img-size-150" src="/Images/projects/project-avatar-placeholder.svg"
+                     alt="">
+                <h6>Chikenettes AB</h6>
+                <p class="bubble gray">Location</p>
+                <p class="email">hans@domain.com</p>
+                <p class="phone">+34 123 456 789</p>
+            </div>
+        </div>
+        <div class="card">
+            client
+        </div>
+        <div class="card">
+            client
+        </div>
+        <div class="card">
+            client
+        </div>
+
+    </section>
+
+</div>

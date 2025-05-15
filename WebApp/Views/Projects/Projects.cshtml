@@ -1,0 +1,31 @@
+﻿@using WebApp.Models
+@model ProjectsViewModel
+@{
+	Layout = "_PortalLayout";
+	ViewData["Title"] = "Projects";
+}
+
+<div id="projects" class="page">
+    <div class="page-header">
+        <h1>Projects</h1>
+        <button class="btn btn-add" id="add-project-button" type="button" data-type="modal"
+                data-target="#add-project-modal">
+            <i class="fa-duotone fa-solid fa-plus"></i>
+            <span>Add Project</span>
+        </button>
+    </div>
+    <nav class="tag-links">
+        <a class="tag-link active" href="">ALL [8]</a>
+        <a class="tag-link" href="">ACTIVE [4]</a>
+        <a class="tag-link" href="">COMPLETED [4]</a>
+    </nav>
+    <div class="divider"></div>
+    <section id="projects" class="projects-list">
+        @foreach (var project in Model.ProjectList)
+        {
+		    @await Html.PartialAsync("Partials/ListItems/_ProjectCard", project)
+        }
+    </section>
+</div>
+@await Html.PartialAsync("Partials/Modals/_AddProjectModal");
+@await Html.PartialAsync("Partials/Modals/_EditProjectModal");

@@ -139,14 +139,19 @@ const htmlElement = document.documentElement;
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme) {
     htmlElement.setAttribute('data-theme', savedTheme);
-    toggle.checked = savedTheme === 'dark';
 }
 
-toggle.addEventListener('change', function () {
-    const newTheme = this.checked ? 'dark' : 'light';
-    htmlElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-});
+if (toggle) {
+    if (savedTheme) {
+        toggle.checked = savedTheme === 'dark';
+    }
+
+    toggle.addEventListener('change', function () {
+        const newTheme = this.checked ? 'dark' : 'light';
+        htmlElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+}
 
 //---------Quill editors
 

@@ -1,0 +1,37 @@
+﻿@using WebApp.Models
+@model ProjectViewModel
+@{
+}
+
+<div class="card">
+    <div class="card-header">
+        <img class="square-image img-size-58" src="/images/projects/project-avatar-placeholder.svg"
+             alt="">
+        <h6>@Model?.Title</h6>
+        <span class="client-name">@Model?.ProjectClient.Name</span>
+        <button class="btn-more" type="button" data-type="dropdown" data-target="#project-dropdown">
+        </button>
+		@await Html.PartialAsync("Partials/Dropdowns/EditDeleteDropdown")
+    </div>
+    <div class="card-body">
+        <p>
+            @Model?.Description
+    </div>
+    <div class="card-footer">
+        <div class="bubble @Model?.TimeLeftColour">
+            <i class="fa-duotone fa-solid fa-clock"></i>
+            <span>@Model?.TimeLeft</span>
+        </div>
+        <div class="bubble @Model?.ProjectStatus.Colour">
+            <i class="fa-duotone fa-folid fa-flag-swallowtail"></i>
+            <span>@Model?.ProjectStatus.Name</span>
+        </div>
+        <div class="team-members-wrapper">
+            <div class="team-member" data-type="tooltip" data-target=".hover-bubble">
+                <img class="round-image img-size-24" src="/images/users/user-template.svg"
+                     alt="template avatar">
+                <span class="bubble hover-bubble hide">@Model?.ProjectManager.FirstName @Model?.ProjectManager.LastName</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div id="team" class="page">
+    <div class="page-header">
+        <h1>Team Members</h1>
+        <button class="btn btn-add" id="add-member-button" type="button" data-type="modal"
+                data-target="#add-member-modal">
+            <i class="fa-duotone fa-solid fa-plus"></i>
+            <span>Add Member</span>
+        </button>
+    </div>
+    <div class="divider"></div>
+    <section id="members" class="members-list">
+        <div class="card">
+            <div class="card-header">
+                <button class="btn-more" type="button" data-type="dropdown" data-target="#member-dropdown">
+                </button>
+                <div id="member-dropdown" class="dropdown">
+                    <div class="dropdown-body">
+                        <a class="dropdown-item" href="#" type="button" data-type="modal"
+                           data-target="#edit-member-modal">
+                            <i class="fa-duotone fa-solid fa-pencil"></i>
+                            <span>Edit</span>
+                        </a>
+                        <div class="divider"></div>
+                        <a class="dropdown-item" href="#">
+                            <i class="fa-duotone fa-solid fa-trash-can-xmark"></i>
+                            <span>Delete</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <img class="round-image img-size-150" src="/Images/users/user-template.svg" alt="">
+                <h6>Hans Martin-Lassei</h6>
+                <p class="bubble gray">Administrator</p>
+                <p class="email">hans@domain.com</p>
+                <p class="phone">+34 123 456 789</p>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary" type="button" data-type="modal"
+                        data-target="#message-member-modal">
+                    Message
+                </button>
+            </div>
+
+        </div>
+        <div class="card">
+            member
+        </div>
+        <div class="card">
+            member
+        </div>
+        <div class="card">
+            member
+        </div>
+
+    </section>
+
+</div>

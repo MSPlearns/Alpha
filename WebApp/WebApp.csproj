@@ -18,15 +18,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Admin\" />
-    <Folder Include="Views\Auth\" />
-    <Folder Include="Views\Projects\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Views\Shared\Partials\Components\Searchbar.cshtml">
+    <Content Update="Views\Shared\Partials\Components\_Searchbar.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

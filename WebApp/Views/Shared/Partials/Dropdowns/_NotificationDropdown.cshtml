@@ -1,0 +1,12 @@
+﻿<div id="notification-dropdown" class="dropdown">
+    <div class="dropdown-header">
+        <h4>Notifications</h4>
+        <div class="badge badge-red">
+            <span id="notification counter">99+</span>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <div class="dropdown-body">
+        @await Html.PartialAsync("Partials/Components/_NotificationItem")
+    </div>
+</div>

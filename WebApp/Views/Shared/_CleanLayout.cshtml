@@ -13,9 +13,11 @@
     <title>@ViewData["Title"] - Alpha Portal</title>
 </head>
 <body>
-
+    <div class="center-wrapper">
+        <main>
 			@RenderBody();
-
+        </main>
+    </div>
 
     <script src="/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
